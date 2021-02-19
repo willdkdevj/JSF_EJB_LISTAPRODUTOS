@@ -10,11 +10,11 @@
 </h:head>
 <body>
 	<h1>Lista de Produtos</h1>
-	<h:form id="form" acceptcharset="ISO-8859-1" lang="pt">
+	<h:form id="form">
 		Nome do Produto:
-		<h:inputText id="txtProd" value="#{form.item}" required="true" requiredMessage="Informe o Nome do Produto" size="15"/>
+		<h:inputText id="txtProd" value="#{bean.item}" required="true" requiredMessage="Informe o Nome do Produto" size="15"/>
 		<h:commandButton id="btAcao" value="Adicionar">
-			<f:ajax execute="@form" listener="#{form.adicionar}" render="txtProd erro" />
+			<f:ajax execute="@form" listener="#{bean.adicionar}" render="txtProd resultado erro" />
 		</h:commandButton>
 		<h:message id="erro" for="txtProd" style="color: red;"/>
 		
@@ -22,10 +22,10 @@
 		
 		<h:panelGroup id="resultado">
 			<ul>
-				<ui:repeat var="i" value="#{form.itens}">
+				<ui:repeat var="i" value="#{bean.itens}">
 					<li>#{i} [
 						<h:commandLink value="remover">
-							<f:ajax listener="#{}" render=":form:resultado :form:erro"/>
+							<f:ajax listener="#{bean.remover}" render=":form:resultado :form:erro"/>
 							<f:param name="removeItem" value="#{i}"/>
 						</h:commandLink>
 					]</li>
